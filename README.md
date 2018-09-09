@@ -29,8 +29,9 @@ This project is to deploy the item catalog web applications onto Linux servers! 
 11. The new user has been created. Restart the ssh: `sudo service ssh restart`
 12. Logout root user and then login as grader: `sudo ssh -i ~/.ssh/udacity_key.rsa grader@54.198.69.144`
 13. Edit the `ssdh_config` in `/etc/ssh/sshd_config`: 
-- On the PasswordAuthentication line, change the text after to no.
+- On the `PasswordAuthentication` line, change the text after to `no`.
 - Change the port from **22** to **2200**
+- For `PermitRootLogin`, change `prohibit-password` to `no`
 14. Restart the ssh: `sudo service ssh restart`. Then logout.
 15. Login as grader through port 2200: `sudo ssh -i ~/.ssh/continue2_key.rsa -p 2200 grader@54.198.69.144`
 16. Disable ssh login for root user: `sudo nano /etc/ssh/sshd_config`, then find the PermitRootLogin line and change to no. Restart ssh.
@@ -109,8 +110,9 @@ application.secret_key = 'super_secret_key'
 - Quit the postgrel command line: `\q` and then `exit`
 13. Change all engine to `engine = create_engine('postgresql://catalog:[password]@localhost/catalog)` in catalog project
 14. Initiate the database by running ` python database_setup.py` and `python lotsofitems.py`
-15. `sudo a2ensite catalog` and then try `sudo service apache2 restart`.
-16.  Enter your application address http://54.198.69.144.xip.io into the browser. You should see your application on the browser!
+15. Run `sudo apt-get update && sudo apt-get dist-upgrade` to upgrade the package
+16. `sudo a2ensite catalog` and then try `sudo service apache2 restart`.
+17.  Enter your application address http://54.198.69.144.xip.io into the browser. You should see your application on the browser!
 #### Reference
 https://www.digitalocean.com/community/tutorials/how-to-install-and-use-postgresql-on-ubuntu-14-04
 https://blog.codeasite.com/how-do-i-find-apache-http-server-log-files/
